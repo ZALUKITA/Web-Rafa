@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  RAFAFURNITURE — Web de muebles hechos a mano
+  ============================================================
+  CÓMO PERSONALIZAR ESTE ARCHIVO (léelo antes de publicar):
+
+  0. PANEL DE ADMINISTRACIÓN (recomendado)
+     Esta web incluye un panel visual en la carpeta "admin" (sin tocar
+     código) para que el dueño del negocio pueda añadir fotos, nuevos
+     proyectos a la galería, opiniones de clientes y datos de contacto
+     por su cuenta. Lee el archivo GUIA-PUBLICAR-Y-PANEL.md en la raíz
+     del proyecto: explica paso a paso cómo publicar la web gratis y
+     cómo activar y usar ese panel. Los datos que gestiona el panel
+     viven en la carpeta "data" (archivos .json) y la propia página los
+     lee automáticamente mediante js/site-data.js.
+
+  1. DATOS DE CONTACTO
+     Se gestionan desde el panel (Ajustes generales), y se guardan en
+     data/settings.json. También puedes editarlos a mano en ese archivo
+     si lo prefieres. Busca "PERSONALIZA AQUÍ" con Ctrl+F en este HTML
+     para ver dónde se muestran (son solo el valor de respaldo inicial,
+     el panel los sobrescribe en cuanto el dueño los configura):
+       - Email de contacto:  ejemplo@gmail.com   (parece un valor de ejemplo, confírmalo)
+       - WhatsApp:           +34 678 69 69 38
+       - Instagram:          ejemplo               (parece un valor de ejemplo, confírmalo)
+       - Zona de trabajo:    Sevilla y alrededores
+
+  2. IMÁGENES
+     Recomendado: súbelas desde el panel (admin), en "Ajustes generales"
+     (fotos de portada), "Fotos de categorías" y "Galería de proyectos".
+     Sin panel, también puedes hacerlo a mano: todas las tarjetas de
+     producto y la galería usan bloques con textura de madera + icono
+     como marcador visual mientras no hay foto real, señalados con una
+     nota "FOTO:" justo encima de cada bloque. Para poner una foto a
+     mano, sustituye el bloque con clase "ph" correspondiente por una
+     etiqueta de imagen normal apuntando a tu archivo (por ejemplo,
+     dentro de la carpeta "images").
+
+  3. FORMULARIO DE ENCARGOS
+     El formulario funciona con un enlace "mailto:" (abre el programa
+     de correo del visitante con los datos ya rellenos). Es la forma
+     más sencilla de tener un formulario funcional SIN servidor.
+     Si más adelante quieres que los encargos lleguen directamente a
+     tu bandeja de entrada sin depender del cliente de correo del
+     visitante, puedes conectar el formulario (id "orderForm") a un
+     servicio gratuito como Formspree (formspree.io) o Web3Forms
+     (web3forms.com) en un par de minutos.
+
+  4. COLORES
+     Todos los colores están centralizados como variables CSS en la
+     sección ":root", al principio del bloque de estilos. Cambia esos
+     valores para ajustar la paleta a tu gusto.
+  ============================================================
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rafafurniture — Muebles hechos a mano en Sevilla</title>
+<meta name="description" content="Rafafurniture: muebles de madera maciza hechos a mano en Sevilla. Piezas propias y encargos a medida, fabricados con cuidado artesanal.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <nav class="nav">
+    <a href="#inicio" class="logo">Rafa<span>furniture</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#muebles">Muebles</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li class="mobile-only-cta"><a href="#encargos" class="btn btn-primary">Haz tu encargo</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#encargos" class="btn btn-primary">Haz tu encargo</a>
+    </div>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú">
+      <svg id="burgerIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div class="hero-copy reveal">
+      <div class="hero-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Taller artesanal en Sevilla
+      </div>
+      <h1>Muebles de madera maciza, <em>hechos a mano</em> para durar toda una vida</h1>
+      <p class="lead">En Rafafurniture diseñamos y fabricamos cada pieza una a una, con madera maciza y técnicas tradicionales de carpintería. Muebles propios listos para tu casa, o encargos a medida pensados exactamente para tu espacio.</p>
+      <div class="hero-actions">
+        <a href="#muebles" class="btn btn-primary">
+          Ver muebles
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#encargos" class="btn btn-outline">Haz tu encargo a medida</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>+150</strong><span>piezas entregadas</span></div>
+        <div><strong>100%</strong><span>madera maciza</span></div>
+        <div><strong>Sevilla</strong><span>y alrededores</span></div>
+      </div>
+    </div>
+    <div class="hero-media reveal">
+      <!-- FOTO: pieza destacada del taller (plano general) — gestionable desde el panel (Ajustes) -->
+      <div class="ph" id="heroImageMain" data-empty-tag="Foto próximamente">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6"/></svg>
+        <span class="ph-tag">Foto próximamente</span>
+      </div>
+      <!-- FOTO: detalle del proceso de fabricación — gestionable desde el panel (Ajustes) -->
+      <div class="ph ph-float" id="heroImageFloat">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4"><path d="M14 2 5 11l-2 6 6-2 9-9-4-4Z"/><path d="M13 3l4 4"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRIP ============ -->
+<div class="strip">
+  <div class="track">
+    <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+      Madera maciza &nbsp;
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+      Hecho a mano en Sevilla &nbsp;
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+      Encargos a medida &nbsp;
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+      Diseño atemporal &nbsp;
+    </span>
+    <span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+      Madera maciza &nbsp;
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+      Hecho a mano en Sevilla &nbsp;
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+      Encargos a medida &nbsp;
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+      Diseño atemporal &nbsp;
+    </span>
+  </div>
+</div>
+
+<!-- ============ CATEGORIES ============ -->
+<section id="muebles">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nuestros muebles</span>
+      <h2>Piezas pensadas para acompañarte durante años</h2>
+      <p>Explora nuestras categorías o cuéntanos qué tienes en mente para fabricarlo a tu medida.</p>
+    </div>
+    <div class="cat-grid">
+
+      <div class="cat-card reveal">
+        <!-- FOTO: mesa de comedor — gestionable desde el panel (Fotos de categorías) -->
+        <div class="ph" id="catImgMesas"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M3 8h18M5 8v12M19 8v12M3 8l2-4h14l2 4"/></svg></div>
+        <div class="cat-card-body">
+          <h3>Mesas y comedores</h3>
+          <p>Mesas de centro, comedor y auxiliares en madera maciza.</p>
+          <a href="#encargos" class="cat-link">Pedir presupuesto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="cat-card reveal">
+        <!-- FOTO: sillas y bancos — gestionable desde el panel (Fotos de categorías) -->
+        <div class="ph" id="catImgSillas"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M6 4h12v9H6zM6 13v7M18 13v7M6 17h12"/></svg></div>
+        <div class="cat-card-body">
+          <h3>Sillas y bancos</h3>
+          <p>Asientos cómodos y resistentes, a juego con tu mesa.</p>
+          <a href="#encargos" class="cat-link">Pedir presupuesto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="cat-card reveal">
+        <!-- FOTO: armarios y aparadores — gestionable desde el panel (Fotos de categorías) -->
+        <div class="ph" id="catImgArmarios"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 3h16v18H4zM12 3v18M8 12h.01M16 12h.01"/></svg></div>
+        <div class="cat-card-body">
+          <h3>Armarios y aparadores</h3>
+          <p>Almacenaje con carácter para salón, dormitorio o recibidor.</p>
+          <a href="#encargos" class="cat-link">Pedir presupuesto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="cat-card reveal">
+        <!-- FOTO: estanterías — gestionable desde el panel (Fotos de categorías) -->
+        <div class="ph" id="catImgEstanterias"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 4h16v16H4zM4 10h16M4 16h16"/></svg></div>
+        <div class="cat-card-body">
+          <h3>Estanterías</h3>
+          <p>Modulares o a medida, adaptadas a cualquier rincón.</p>
+          <a href="#encargos" class="cat-link">Pedir presupuesto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="cat-card reveal">
+        <!-- FOTO: muebles auxiliares — gestionable desde el panel (Fotos de categorías) -->
+        <div class="ph" id="catImgAuxiliares"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 2v6M8 5l4 3 4-3M6 11h12l-1 10H7L6 11Z"/></svg></div>
+        <div class="cat-card-body">
+          <h3>Muebles auxiliares</h3>
+          <p>Percheros, banquetas, mesitas y pequeños detalles.</p>
+          <a href="#encargos" class="cat-link">Pedir presupuesto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="cat-card reveal">
+        <!-- FOTO: proyecto especial a medida — gestionable desde el panel (Fotos de categorías) -->
+        <div class="ph" id="catImgMedida"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 20V10M12 10 4 6v8l8 4 8-4V6l-8 4Z"/></svg></div>
+        <div class="cat-card-body">
+          <h3>Proyectos a medida</h3>
+          <p>¿Tienes una idea distinta? Diseñamos la pieza contigo desde cero.</p>
+          <a href="#encargos" class="cat-link">Contarnos tu idea <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="story" id="nosotros">
+  <div class="wrap">
+    <div class="story-media reveal">
+      <!-- FOTO: retrato en el taller / manos trabajando la madera -->
+      <div class="ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 2a5 5 0 0 1 5 5v3a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5ZM5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>
+      </div>
+      <div class="story-badge">Hecho<br>a mano<br>desde Sevilla</div>
+    </div>
+    <div class="story-copy reveal">
+      <span class="eyebrow">Nuestra historia</span>
+      <h2>Cada pieza nace en el taller, tabla a tabla</h2>
+      <p>Rafafurniture empezó como un pequeño taller en Sevilla con una idea sencilla: fabricar muebles que duren, con madera de verdad y sin prisas. Seguimos trabajando cada encargo de forma artesanal, seleccionando la madera, cuidando cada unión y cada acabado a mano.</p>
+      <p>No hacemos producción en serie. Cada mesa, cada silla y cada mueble a medida se piensa para la persona que lo va a usar y el espacio en el que va a vivir.</p>
+      <div class="story-values">
+        <div class="value">
+          <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div><h4>Madera maciza</h4><p>Seleccionada pieza a pieza, sin aglomerados.</p></div>
+        </div>
+        <div class="value">
+          <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5c2 0 3.3 1 3.5 1.5C10.2 6 11.5 5 13.5 5 17 5 19.5 8.5 17.5 12.5 15 16.65 12 21 12 21Z"/></svg></div>
+          <div><h4>Hecho con cuidado</h4><p>Procesos tradicionales de carpintería, sin atajos.</p></div>
+        </div>
+        <div class="value">
+          <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <div><h4>Hecho para durar</h4><p>Piezas pensadas para pasar de generación en generación.</p></div>
+        </div>
+        <div class="value">
+          <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.4 14.5 16 10.1a4 4 0 1 0-5.9-5.9L14.5 8.6M9 15l-4.5 4.5a2 2 0 1 1-3-3L6 12"/></svg></div>
+          <div><h4>100% a medida</h4><p>Adaptamos medidas, madera y acabado a tu espacio.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="proceso">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <span class="eyebrow">Cómo trabajamos</span>
+      <h2>De tu idea a un mueble hecho a mano</h2>
+      <p>Así es el camino de un encargo a medida, paso a paso.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <h4>Cuéntanos tu idea</h4>
+        <p>Nos escribes por el formulario, WhatsApp o Instagram contándonos qué necesitas.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">02</span>
+        <h4>Diseño y presupuesto</h4>
+        <p>Te proponemos diseño, madera y acabado, con un presupuesto cerrado antes de empezar.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">03</span>
+        <h4>Fabricación artesanal</h4>
+        <p>Fabricamos tu pieza a mano en el taller, con seguimiento del proceso si quieres verlo.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">04</span>
+        <h4>Entrega en Sevilla</h4>
+        <p>Entregamos en Sevilla y alrededores, o preparamos el envío si estás fuera.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Trabajos anteriores</span>
+      <h2>Algunas piezas que hemos fabricado</h2>
+      <p>Una muestra de proyectos realizados. En cuanto añadas proyectos desde el panel de administración, sustituirán automáticamente a estos bloques de ejemplo.</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Estos 6 bloques son el estado por defecto (sin proyectos añadidos aún).
+           En cuanto data/gallery.json tenga elementos, js/site-data.js
+           sustituye todo este contenido por los proyectos reales. -->
+      <div class="ph g1 reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M3 8h18M5 8v12M19 8v12M3 8l2-4h14l2 4"/></svg></div>
+      <div class="ph g2 reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 3h16v18H4zM12 3v18"/></svg></div>
+      <div class="ph g3 reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M6 4h12v9H6zM6 13v7M18 13v7"/></svg></div>
+      <div class="ph g4 reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M4 4h16v16H4zM4 10h16M4 16h16"/></svg></div>
+      <div class="ph g5 reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 20V10M12 10 4 6v8l8 4 8-4V6l-8 4Z"/></svg></div>
+      <div class="ph g6 reveal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.3"><path d="M12 2v6M8 5l4 3 4-3M6 11h12l-1 10H7L6 11Z"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS (plantilla de ejemplo) ============ -->
+<section id="opiniones">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Opiniones</span>
+      <h2>Lo que dicen quienes ya tienen un Rafafurniture en casa</h2>
+    </div>
+    <div class="test-note reveal" id="testimonialsNote">
+      Plantilla de ejemplo: estas tres tarjetas son un modelo de maquetación, no opiniones reales. Añade opiniones auténticas desde el panel de administración (sección "Opiniones de clientes") y sustituirán automáticamente a este ejemplo.
+    </div>
+    <div class="test-grid" id="testimonialsGrid">
+      <div class="test-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+        </div>
+        <p>"Texto de ejemplo: aquí puedes añadir la opinión real de un cliente sobre su experiencia con el encargo."</p>
+        <div class="test-who">
+          <div class="test-avatar"></div>
+          <div><strong>Nombre de cliente</strong><span>Pieza encargada</span></div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+        </div>
+        <p>"Texto de ejemplo: describe aquí cómo fue el proceso de encargo, la comunicación y el resultado final."</p>
+        <div class="test-who">
+          <div class="test-avatar"></div>
+          <div><strong>Nombre de cliente</strong><span>Pieza encargada</span></div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="m12 2 3 7h7l-5.5 4.2L18.5 21 12 16.5 5.5 21l2-7.8L2 9h7l3-7Z"/></svg>
+        </div>
+        <p>"Texto de ejemplo: comenta si el mueble llegó a tiempo y si volverías a encargar otra pieza."</p>
+        <div class="test-who">
+          <div class="test-avatar"></div>
+          <div><strong>Nombre de cliente</strong><span>Pieza encargada</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORDER / CONTACT ============ -->
+<section class="order" id="encargos">
+  <div class="wrap">
+    <div class="order-grid">
+      <div class="order-info reveal">
+        <span class="eyebrow">Encargos a medida</span>
+        <h2>Hablemos de tu próximo mueble</h2>
+        <p>Cuéntanos qué necesitas: tipo de mueble, medidas, madera y estilo que tienes en mente. Te respondemos con una propuesta de diseño y presupuesto sin compromiso.</p>
+
+        <div class="contact-list">
+          <!-- PERSONALIZA AQUÍ: email de contacto -->
+          <div class="contact-item">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg></div>
+            <div><strong>Email</strong><span id="contactEmailText">ejemplo@gmail.com</span></div>
+          </div>
+          <!-- PERSONALIZA AQUÍ: teléfono / WhatsApp -->
+          <div class="contact-item">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.9 2.2Z"/></svg></div>
+            <div><strong>WhatsApp</strong><span id="contactWhatsappText">+34 678 69 69 38</span></div>
+          </div>
+          <!-- PERSONALIZA AQUÍ: zona de trabajo -->
+          <div class="contact-item">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
+            <div><strong>Zona de trabajo</strong><span id="contactZonaText">Sevilla y alrededores</span></div>
+          </div>
+        </div>
+
+        <div class="order-social">
+          <a href="https://wa.me/34678696938?text=Hola%20Rafafurniture%2C%20quiero%20hacer%20un%20encargo" target="_blank" rel="noopener" aria-label="WhatsApp" class="js-wa-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.9 2.2Z"/></svg>
+          </a>
+          <!-- PERSONALIZA AQUÍ: usuario de Instagram -->
+          <a href="https://instagram.com/ejemplo" target="_blank" rel="noopener" aria-label="Instagram" class="js-ig-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="mailto:ejemplo@gmail.com" aria-label="Email" id="socialEmailLink" class="js-email-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="form-card reveal">
+        <h3>Cuéntanos tu encargo</h3>
+        <p>Rellena el formulario y se abrirá tu correo con todos los datos listos para enviar.</p>
+        <form id="orderForm">
+          <div class="form-row">
+            <div class="field">
+              <label for="fName">Nombre *</label>
+              <input type="text" id="fName" required placeholder="Tu nombre">
+            </div>
+            <div class="field">
+              <label for="fPhone">Teléfono</label>
+              <input type="tel" id="fPhone" placeholder="+34 600 000 000">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="fEmail">Email *</label>
+              <input type="email" id="fEmail" required placeholder="tu@email.com">
+            </div>
+            <div class="field">
+              <label for="fType">Tipo de mueble *</label>
+              <select id="fType" required>
+                <option value="">Selecciona una opción</option>
+                <option>Mesa / comedor</option>
+                <option>Silla / banco</option>
+                <option>Armario / aparador</option>
+                <option>Estantería</option>
+                <option>Cama / dormitorio</option>
+                <option>Otro / a medida</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="fDesc">Cuéntanos tu idea *</label>
+            <textarea id="fDesc" required placeholder="Describe el mueble que tienes en mente: estilo, madera, medidas aproximadas, uso..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="fSize">Medidas aproximadas</label>
+              <input type="text" id="fSize" placeholder="Ej. 180 x 90 x 75 cm">
+            </div>
+            <div class="field">
+              <label for="fBudget">Presupuesto aproximado</label>
+              <select id="fBudget">
+                <option value="">Prefiero comentarlo</option>
+                <option>Menos de 300 €</option>
+                <option>300 € - 700 €</option>
+                <option>700 € - 1.500 €</option>
+                <option>Más de 1.500 €</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>¿Cómo prefieres que te contactemos?</label>
+            <div class="field-radios">
+              <label><input type="radio" name="fContact" value="Email" checked> Email</label>
+              <label><input type="radio" name="fContact" value="WhatsApp"> WhatsApp</label>
+              <label><input type="radio" name="fContact" value="Cualquiera"> Cualquiera</label>
+            </div>
+          </div>
+          <div class="form-foot">
+            <button type="submit" class="btn btn-primary">
+              Enviar encargo
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+            </button>
+            <span class="form-alt">o escríbenos por <a href="https://wa.me/34678696938" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600;" class="js-wa-link">WhatsApp</a></span>
+          </div>
+          <p class="form-msg" id="formMsg"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Todo lo que necesitas saber antes de encargar</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q">¿Cuánto tarda un encargo a medida? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Depende de la pieza y de la carga de taller del momento. Al confirmar el presupuesto te damos un plazo estimado orientativo.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">¿Hacéis envíos fuera de Sevilla? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Sí, entregamos en persona en Sevilla y alrededores, y gestionamos transporte especializado para envíos a otras zonas.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">¿Puedo elegir el tipo de madera y el acabado? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Por supuesto. Te asesoramos sobre la madera y el acabado más adecuados según el uso, el estilo y el presupuesto que manejes.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q">¿Necesito pagar por adelantado? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a"><p>Normalmente se solicita una señal para reservar madera y tiempo de taller, y el resto se abona a la entrega. Te lo detallamos en el presupuesto.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Rafa<span>furniture</span></div>
+        <p>Muebles de madera maciza hechos a mano en Sevilla. Piezas propias y encargos a medida, fabricados con cuidado artesanal.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navegación</h5>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#muebles">Muebles</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Encargos</h5>
+        <ul>
+          <li><a href="#encargos">Haz tu encargo</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <ul>
+          <!-- PERSONALIZA AQUÍ: datos de contacto en el pie -->
+          <li id="footerZonaText">Sevilla y alrededores</li>
+          <li><a href="mailto:ejemplo@gmail.com" id="footerEmailLink" class="js-email-link">ejemplo@gmail.com</a></li>
+          <li><a href="https://wa.me/34678696938" class="js-wa-link" id="footerWaText">+34 678 69 69 38</a></li>
+          <li><a href="https://instagram.com/ejemplo" target="_blank" rel="noopener" class="js-ig-link" id="footerIgLink">@ejemplo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Rafafurniture. Todos los derechos reservados.</span>
+      <span>Hecho a mano en Sevilla 🪵</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ WHATSAPP FLOAT BUTTON ============ -->
+<a class="wa-float js-wa-link" href="https://wa.me/34678696938?text=Hola%20Rafafurniture%2C%20quiero%20hacer%20un%20encargo" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16.001 2.667c-7.364 0-13.334 5.97-13.334 13.334 0 2.353.615 4.66 1.783 6.687L2.7 29.333l6.826-1.79a13.27 13.27 0 0 0 6.475 1.65h.006c7.363 0 13.333-5.97 13.333-13.334 0-3.562-1.387-6.911-3.906-9.43a13.246 13.246 0 0 0-9.433-3.762Zm0 24.4h-.005a11.06 11.06 0 0 1-5.634-1.542l-.404-.24-4.05 1.062 1.082-3.949-.264-.406a11.05 11.05 0 0 1-1.693-5.89c0-6.11 4.972-11.083 11.073-11.083 2.958 0 5.739 1.153 7.83 3.246a10.99 10.99 0 0 1 3.24 7.842c0 6.11-4.972 11.06-11.075 11.06Zm6.073-8.29c-.333-.167-1.966-.97-2.27-1.08-.305-.111-.527-.166-.749.167-.222.333-.86 1.08-1.055 1.303-.194.222-.388.25-.72.083-.334-.167-1.409-.52-2.684-1.657-.992-.885-1.663-1.978-1.858-2.311-.194-.334-.02-.514.146-.68.15-.15.334-.389.5-.583.167-.195.222-.334.334-.556.111-.223.055-.417-.028-.584-.083-.166-.749-1.805-1.026-2.472-.27-.65-.545-.562-.749-.573-.194-.01-.416-.012-.638-.012-.222 0-.583.083-.888.417-.305.333-1.166 1.14-1.166 2.777 0 1.638 1.194 3.222 1.36 3.444.166.222 2.35 3.587 5.693 5.031.796.344 1.417.55 1.9.703.798.254 1.523.218 2.097.132.64-.096 1.966-.804 2.243-1.58.278-.777.278-1.443.194-1.58-.083-.139-.305-.222-.638-.389Z"/></svg>
+</a>
+
+<script src="./js/archstyle.js"></script>
+<script src="./js/site-data.js"></script>
+
+<!-- Netlify Identity: necesario para que los enlaces de invitación /
+     confirmación de email del panel de administración (carpeta "admin")
+     funcionen correctamente. No hace nada si no usas Netlify Identity. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="./js/netlify-identity-redirect.js"></script>
+
+</body>
+</html>
