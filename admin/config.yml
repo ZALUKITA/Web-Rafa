@@ -1,0 +1,75 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Permite probar el panel en tu propio ordenador antes de publicar
+# (ver GUIA-PUBLICAR-Y-PANEL.md, sección "Probar el panel en local").
+local_backend: true
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+site_url: ""
+display_url: ""
+
+collections:
+  - name: "ajustes"
+    label: "Ajustes generales"
+    files:
+      - file: "data/settings.json"
+        label: "Contacto y fotos de portada"
+        name: "settings"
+        description: "Estos datos aparecen en varios sitios de la web (cabecera, sección de encargos, pie de página, botón de WhatsApp...). Se actualizan solos en todos ellos al guardar aquí."
+        fields:
+          - { label: "Email de contacto", name: "email", widget: "string", hint: "A este email llegan los encargos del formulario." }
+          - { label: "WhatsApp (solo números, con prefijo de país, ej. 34600000000)", name: "whatsapp", widget: "string" }
+          - { label: "WhatsApp (texto a mostrar, ej. +34 600 00 00 00)", name: "whatsappDisplay", widget: "string" }
+          - { label: "Usuario de Instagram (sin @)", name: "instagram", widget: "string" }
+          - { label: "Zona de trabajo / entrega", name: "zona", widget: "string" }
+          - { label: "Foto principal de portada", name: "heroImage", widget: "image", required: false, hint: "Aparece grande, a la derecha del título en la portada." }
+          - { label: "Foto secundaria de portada", name: "heroImage2", widget: "image", required: false, hint: "Foto pequeña superpuesta sobre la principal." }
+
+      - file: "data/categories.json"
+        label: "Fotos de categorías"
+        name: "categories"
+        description: "Una foto representativa para cada categoría de la sección \"Nuestros muebles\"."
+        fields:
+          - { label: "Mesas y comedores", name: "mesas", widget: "image", required: false }
+          - { label: "Sillas y bancos", name: "sillas", widget: "image", required: false }
+          - { label: "Armarios y aparadores", name: "armarios", widget: "image", required: false }
+          - { label: "Estanterías", name: "estanterias", widget: "image", required: false }
+          - { label: "Muebles auxiliares", name: "auxiliares", widget: "image", required: false }
+          - { label: "Proyectos a medida", name: "medida", widget: "image", required: false }
+
+  - name: "contenido"
+    label: "Contenido de la web"
+    files:
+      - file: "data/gallery.json"
+        label: "Galería de proyectos"
+        name: "gallery"
+        description: "Cada vez que termines un mueble, añade aquí una entrada nueva. Aparece automáticamente en la sección \"Trabajos anteriores\" de la web."
+        fields:
+          - label: "Proyectos"
+            name: "items"
+            widget: "list"
+            label_singular: "Proyecto"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Título / nombre de la pieza", name: "title", widget: "string" }
+              - { label: "Foto", name: "image", widget: "image" }
+
+      - file: "data/testimonials.json"
+        label: "Opiniones de clientes"
+        name: "testimonials"
+        description: "Opiniones reales de clientes. En cuanto añadas una, sustituye automáticamente a las tarjetas de ejemplo de la web."
+        fields:
+          - label: "Opiniones"
+            name: "items"
+            widget: "list"
+            label_singular: "Opinión"
+            summary: "{{fields.name}} — {{fields.piece}}"
+            fields:
+              - { label: "Nombre del cliente", name: "name", widget: "string" }
+              - { label: "Pieza encargada", name: "piece", widget: "string", required: false }
+              - { label: "Valoración", name: "rating", widget: "number", default: 5, min: 1, max: 5, value_type: "int" }
+              - { label: "Texto de la opinión", name: "text", widget: "text" }

@@ -1,0 +1,29 @@
+# Cabeceras de seguridad para Netlify. Netlify lee este archivo
+# automáticamente al publicar (no hace falta configurar nada más).
+# Referencia: https://docs.netlify.com/platform/caching/response-headers/
+#
+# Si después de publicar el panel (/admin/) deja de funcionar algo
+# (por ejemplo, no carga bien o no puede guardar), abre la consola del
+# navegador (F12 → Console): si ves mensajes que mencionan
+# "Content Security Policy", identifica qué recurso bloquea y añade su
+# origen a la línea correspondiente de más abajo, o quita temporalmente
+# esa línea de Content-Security-Policy en el bloque "/admin/*" mientras
+# lo investigas.
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://identity.netlify.com https://api.netlify.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+
+# El panel de administración necesita permisos algo más amplios: carga
+# Decap CMS desde unpkg.com, y usa estilos e imágenes generados por su
+# propio código (por eso 'unsafe-inline' en estilos y blob: en imágenes
+# aquí; el resto de la web, arriba, no lo necesita).
+/admin/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://identity.netlify.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.githubusercontent.com; connect-src 'self' https://identity.netlify.com https://api.netlify.com https://*.netlify.com; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'

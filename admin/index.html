@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de administración — Rafafurniture</title>
+  <!-- Gestiona el inicio de sesión (quién puede entrar al panel). -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <!-- Carga el propio editor visual (Decap CMS, gratuito y de código
+       abierto). Versión fijada a propósito (en vez de "^3.0.0", que se
+       actualizaría sola a lo que sea que esté publicado en cada momento):
+       así una futura versión rota o comprometida en el registro de npm
+       no se cargaría aquí sin que nadie lo decida antes.
+       Antes de subir una versión nueva a mano, comprueba el número
+       actual en https://www.npmjs.com/package/decap-cms -->
+  <script src="https://unpkg.com/decap-cms@3.15.1/dist/decap-cms.js"></script>
+  <script src="../js/netlify-identity-redirect.js"></script>
+</body>
+</html>
